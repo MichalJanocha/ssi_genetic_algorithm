@@ -35,7 +35,7 @@ const main = (
       populations = Runner.run(Cross, populations, pr_krzyz);
       populations = Runner.run(Mutation, populations, pr_mut);
       populations = Runner.run(Selection, populations, equation, a, b, c)
-      console.log(`Populacja ${idx+1}: ${populations}`)
+      // console.log(`Populacja ${idx+1}: ${populations}`)
     }
     const decodedPop = populations.map(x => Generator.decode(x)).sort((a,b) => b-a);
     fs.appendFile('results.csv', `f(${decodedPop[0]}) = ${equation(decodedPop[0], a, b, c)}\r\n`, () => {});

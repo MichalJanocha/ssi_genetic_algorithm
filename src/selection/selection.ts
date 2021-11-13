@@ -27,7 +27,7 @@ export class Selection implements Runtime {
         }
       }
     })
-    // console.log(ranges);
+
     for(let i=0; i<population.length; i++){
       const rnd = Math.random();
       const rang = ranges.find(([down, upper, dec]) => rnd > down && rnd <= upper);
