@@ -24,12 +24,12 @@ export class Selection implements Runtime {
     this.decPopProbs = this.decPopVals.map(([decValue, eq]) => [decValue, eq/this.equationSum]).sort((a,b) => a[1] - b[1]);
     const ranges = this.decPopProbs.map(([decValue, prob], i, a) => {
       if(i === 0){
-        return [0, prob, decValue];
+        return [0, prob || 0, decValue];
       }else{
         if(a[i+1] !== undefined){
-          return [a[i-1][1], a[i][1], decValue];
+          return [a[i-1][1] || 0, a[i][1] || 0, decValue];
         }else{
-          return [a[i-1][1], 1, decValue];
+          return [a[i-1][1] || 0, 1, decValue];
         }
       }
     })

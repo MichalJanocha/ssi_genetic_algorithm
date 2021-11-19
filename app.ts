@@ -42,4 +42,4 @@ const main = (
     fs.appendFile('results.csv', `${decodedPop[0]} ${equation(decodedPop[0], a, b, c)}\r\n`, () => {});
   }
 }
-main(4, 7, 2, 100, 15, 8, 0.8, 0.1);
+main(4, 7, 2, 10, 15, 8, 0.8, 0.1);
