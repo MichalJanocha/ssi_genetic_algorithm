@@ -42,15 +42,16 @@ export class Cross implements Runtime {
   }
 
   private divideIntoPairs(){
-    let pairsCount = 0;
+    const tmpCol: string[] = JSON.parse(JSON.stringify(this.notModifiedPopulations));
 
-    while(pairsCount < this.notModifiedPopulations.length){
-      this.pairs.push([
-        this.notModifiedPopulations[Math.round(Math.random() * (this.entitiesCount-1))],
-        this.notModifiedPopulations[Math.round(Math.random() * (this.entitiesCount-1))]
-      ])
-      pairsCount = 0;
-      this.pairs.forEach(x => pairsCount += x.length);
+    while(tmpCol.length > 1){
+      const rIdx = Math.round(Math.random() * ((tmpCol.length-1) - 1) + 1);
+      this.pairs.push([tmpCol.splice(rIdx, 1)[0], tmpCol.splice(0, 1)[0]]);
     }
+
+    if(tmpCol.length === 1){
+      this.outputPopulations.push(tmpCol[0]);
+    }
+
   }
 }

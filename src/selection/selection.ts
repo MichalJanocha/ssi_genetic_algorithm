@@ -13,7 +13,13 @@ export class Selection implements Runtime {
     this.equationSum = 0;
     this.decPopVals = population
       .map(ent => Generator.decode(ent))
-      .map(dec => [dec, e(dec, a, b, c)])
+      .map(dec => {
+        let equation = e(dec, a, b, c);
+        if(equation < 0){
+          equation = 0;
+        }
+        return [dec, equation]
+      })
     this.decPopVals.forEach(([dec1, eq1]) => this.equationSum += eq1);
     this.decPopProbs = this.decPopVals.map(([decValue, eq]) => [decValue, eq/this.equationSum]).sort((a,b) => a[1] - b[1]);
     const ranges = this.decPopProbs.map(([decValue, prob], i, a) => {
